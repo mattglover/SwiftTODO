@@ -7,19 +7,12 @@ class Todo: NSObject, NSCoding {
 	var favorited: Bool!
 	var state: TodoState!
 
+	// MARK: Serialization Keys
 	struct PropertyKey {
 		static let guidKey 		= "guid"
 		static let nameKey 		= "name"
 		static let favoritedKey = "favorited"
 		static let stateKey 	= "state"
-	}
-
-	convenience override init() {
-		self.init(guid: nil, name: nil, favorited: false, state: .NotDone)
-	}
-
-	convenience init(name: String?, favorited: Bool, state: TodoState) {
-		self.init(guid: nil, name: name, favorited: favorited, state: state)
 	}
 
 	// MARK: Initialization
@@ -36,6 +29,14 @@ class Todo: NSObject, NSCoding {
 		self.state = state
 
 		super.init()
+	}
+
+	convenience override init() {
+		self.init(guid: nil, name: nil, favorited: false, state: .NotDone)
+	}
+
+	convenience init(name: String?, favorited: Bool, state: TodoState) {
+		self.init(guid: nil, name: name, favorited: favorited, state: state)
 	}
 
 	// MARK: NSCoding
