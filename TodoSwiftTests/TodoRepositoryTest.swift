@@ -49,4 +49,9 @@ class TodoRepositoryTest: XCTestCase {
 		let fetchedTodo = sut.fetchTodo(guid:"EDFGH-ABCD")
 		XCTAssertNil(fetchedTodo)
 	}
+
+	// persist to disk
+	// ability to fetch only the guid without loading all the TODOs
+	// update todo
+	// fetch either Done or NotDone todo
 }
