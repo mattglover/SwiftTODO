@@ -58,4 +58,13 @@ class TodoTest: XCTestCase {
 
 		XCTAssertTrue(todo1 == todo2)
 	}
+
+	func testCanEncodeAndDecode() {
+		let todo = Todo(guid:"ABCDE-FGHIJKLMNO-PQRST-1234-Z", name: "Todo Item 1", favorited: true, state: .NotDone)
+		let archive = NSKeyedArchiver.archivedData(withRootObject: todo)
+
+		let unarchivedTodo = NSKeyedUnarchiver.unarchiveObject(with: archive) as! Todo
+
+		XCTAssertTrue(unarchivedTodo == todo)
+	}
 }

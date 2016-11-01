@@ -40,21 +40,20 @@ class Todo: NSObject, NSCoding {
 
 	// MARK: NSCoding
 	func encode(with aCoder: NSCoder) {
-		aCoder.encode(guid, 	forKey: PropertyKey.guidKey)
-		aCoder.encode(name, 	forKey: PropertyKey.nameKey)
-		aCoder.encode(favorited,forKey: PropertyKey.favoritedKey)
-		aCoder.encode(state, 	forKey: PropertyKey.stateKey)
+		aCoder.encode(guid, 			forKey: PropertyKey.guidKey)
+		aCoder.encode(name, 			forKey: PropertyKey.nameKey)
+		aCoder.encode(favorited,		forKey: PropertyKey.favoritedKey)
+		aCoder.encode(state.rawValue, 	forKey: PropertyKey.stateKey)
 	}
 
 	required convenience init?(coder aDecoder: NSCoder) {
 		let guid = aDecoder.decodeObject(forKey: PropertyKey.guidKey) as! String
 		let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String
-		let favorited = aDecoder.decodeBool(forKey: PropertyKey.favoritedKey)
-		let state = aDecoder.decodeObject(forKey: PropertyKey.stateKey) as! TodoState
+		let favorited = aDecoder.decodeObject(forKey: PropertyKey.favoritedKey) as! Bool
+		let state = TodoState(rawValue: aDecoder.decodeObject(forKey: PropertyKey.stateKey) as! String)!
 
 		self.init(guid: guid, name: name, favorited: favorited, state: state)
 	}
-
 
 	// MARK: Equatable
 	static func ==(lhs: Todo, rhs: Todo) -> Bool {
