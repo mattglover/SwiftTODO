@@ -1,11 +1,18 @@
 import Foundation
 
-class Todo: NSObject {
+class Todo: NSObject, NSCoding {
 
 	var guid: String!
 	var name: String?
 	var favorited: Bool!
 	var state: TodoState!
+
+	struct PropertyKey {
+		static let guidKey 		= "guid"
+		static let nameKey 		= "name"
+		static let favoritedKey = "favorited"
+		static let stateKey 	= "state"
+	}
 
 	convenience override init() {
 		self.init(guid: nil, name: nil, favorited: false, state: .NotDone)
@@ -15,6 +22,7 @@ class Todo: NSObject {
 		self.init(guid: nil, name: name, favorited: favorited, state: state)
 	}
 
+	// MARK: Initialization
 	init(guid: String?, name: String?, favorited: Bool, state: TodoState) {
 
 		if let localGuid = guid {
@@ -26,7 +34,27 @@ class Todo: NSObject {
 		self.name = name
 		self.favorited = favorited
 		self.state = state
+
+		super.init()
 	}
+
+	// MARK: NSCoding
+	func encode(with aCoder: NSCoder) {
+		aCoder.encode(guid, 	forKey: PropertyKey.guidKey)
+		aCoder.encode(name, 	forKey: PropertyKey.nameKey)
+		aCoder.encode(favorited,forKey: PropertyKey.favoritedKey)
+		aCoder.encode(state, 	forKey: PropertyKey.stateKey)
+	}
+
+	required convenience init?(coder aDecoder: NSCoder) {
+		let guid = aDecoder.decodeObject(forKey: PropertyKey.guidKey) as! String
+		let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String
+		let favorited = aDecoder.decodeBool(forKey: PropertyKey.favoritedKey)
+		let state = aDecoder.decodeObject(forKey: PropertyKey.stateKey) as! TodoState
+
+		self.init(guid: guid, name: name, favorited: favorited, state: state)
+	}
+
 
 	// MARK: Equatable
 	static func ==(lhs: Todo, rhs: Todo) -> Bool {
