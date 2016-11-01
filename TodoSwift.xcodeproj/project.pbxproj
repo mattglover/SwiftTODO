@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B27D81471DC8D3AE0017934C /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81461DC8D3AE0017934C /* Persistance.swift */; };
+		B27D81491DC8D4730017934C /* FilePersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81481DC8D4730017934C /* FilePersistanceService.swift */; };
+		B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */; };
 		B2F70F711DC88FDD009FC34B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70F701DC88FDD009FC34B /* AppDelegate.swift */; };
 		B2F70F731DC88FDD009FC34B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70F721DC88FDD009FC34B /* ViewController.swift */; };
 		B2F70F761DC88FDD009FC34B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F70F741DC88FDD009FC34B /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B27D81461DC8D3AE0017934C /* Persistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		B27D81481DC8D4730017934C /* FilePersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceService.swift; sourceTree = "<group>"; };
+		B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceServiceTest.swift; sourceTree = "<group>"; };
 		B2F70F6D1DC88FDD009FC34B /* TodoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F70F701DC88FDD009FC34B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F70F721DC88FDD009FC34B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 		B27D81431DC8D27F0017934C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B27D81461DC8D3AE0017934C /* Persistance.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 			children = (
 				B2F70F9E1DC89010009FC34B /* TodoTest.swift */,
 				B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */,
+				B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */,
 				B2F70F871DC88FDD009FC34B /* Info.plist */,
 			);
 			path = TodoSwiftTests;
@@ -146,6 +154,7 @@
 				B2F70FA01DC8A474009FC34B /* Enums.swift */,
 				B2F70FA31DC8A4A8009FC34B /* Todo.swift */,
 				B2F70FA51DC8A684009FC34B /* TodoRepository.swift */,
+				B27D81481DC8D4730017934C /* FilePersistanceService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,9 +298,11 @@
 			files = (
 				B2F70FA61DC8A684009FC34B /* TodoRepository.swift in Sources */,
 				B2F70F731DC88FDD009FC34B /* ViewController.swift in Sources */,
+				B27D81491DC8D4730017934C /* FilePersistanceService.swift in Sources */,
 				B2F70FA11DC8A474009FC34B /* Enums.swift in Sources */,
 				B2F70F711DC88FDD009FC34B /* AppDelegate.swift in Sources */,
 				B2F70FA41DC8A4A8009FC34B /* Todo.swift in Sources */,
+				B27D81471DC8D3AE0017934C /* Persistance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F70F9F1DC89010009FC34B /* TodoTest.swift in Sources */,
+				B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */,
 				B2F70FA81DC8A6A0009FC34B /* TodoRepositoryTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
