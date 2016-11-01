@@ -56,6 +56,6 @@ class TodoTest: XCTestCase {
 		let todo1 = Todo(guid:"ABCDE-FGHIJKLMNO-PQRST-1234-Z", name: "Todo Item 1", favorited: true, state: .NotDone)
 		let todo2 = Todo(guid:"ABCDE-FGHIJKLMNO-PQRST-1234-Z", name: "Todo Item 1", favorited: true, state: .NotDone)
 
-		XCTAssertEqual(todo1, todo2)
+		XCTAssertTrue(todo1 == todo2)
 	}
 }

@@ -28,7 +28,7 @@ class Todo: NSObject {
 		self.state = state
 	}
 
-	// MARK: Equatable (I THINK THIS MIGHT BE REDUNDANT NOW .. it was only added to assist with the tests)
+	// MARK: Equatable
 	static func ==(lhs: Todo, rhs: Todo) -> Bool {
 		return
 			(lhs.guid == rhs.guid &&
