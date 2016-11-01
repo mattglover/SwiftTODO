@@ -2,6 +2,19 @@ import XCTest
 
 @testable import TodoSwift
 
+class MockPersistanceService: Persistance {
+	var countOfSaveCalls = 0
+
+	func save(data: Data, filename: String) -> (Bool, FilePersistanceError?) {
+		countOfSaveCalls += 1
+		return (false, nil)
+	}
+
+	func load(filename: String) -> (Data?, FilePersistanceError?) {
+		return (nil, nil)
+	}
+}
+
 class TodoRepositoryTest: XCTestCase {
 
 	var sut: TodoRepository!
@@ -27,6 +40,17 @@ class TodoRepositoryTest: XCTestCase {
 		XCTAssertEqual(1, sut.count())
 	}
 
+	func testAddingTodo_InvokesSaveCallOnPersistanceService() {
+		let mockPersistanceService = MockPersistanceService()
+		sut.persistanceService = mockPersistanceService
+		XCTAssertEqual(0, mockPersistanceService.countOfSaveCalls)
+
+		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		sut.addTodo(todo: todo)
+
+		XCTAssertEqual(1, mockPersistanceService.countOfSaveCalls)
+	}
+
 	func testFetchTodoByValidGUID_returnsCorrectTodo() {
 		let todo1 = Todo(guid:"ABCD-EDFGH", name: "Test Todo 1", favorited: false, state: .NotDone)
 		let todo2 = Todo(guid:"ZYXW-UVTSR", name: "Test Todo 2", favorited: false, state: .NotDone)
@@ -49,6 +73,8 @@ class TodoRepositoryTest: XCTestCase {
 		let fetchedTodo = sut.fetchTodo(guid:"EDFGH-ABCD")
 		XCTAssertNil(fetchedTodo)
 	}
+
+
 
 	// persist to disk
 	// ability to fetch only the guid without loading all the TODOs
