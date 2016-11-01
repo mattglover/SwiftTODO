@@ -1,13 +1,13 @@
 import Foundation
 
-class Todo: CustomDebugStringConvertible, Equatable {
+class Todo: NSObject {
 
 	var guid: String!
 	var name: String?
 	var favorited: Bool!
 	var state: TodoState!
 
-	convenience init() {
+	convenience override init() {
 		self.init(guid: nil, name: nil, favorited: false, state: .NotDone)
 	}
 
@@ -28,8 +28,7 @@ class Todo: CustomDebugStringConvertible, Equatable {
 		self.state = state
 	}
 
-	// MARK: Equatable
-
+	// MARK: Equatable (I THINK THIS MIGHT BE REDUNDANT NOW .. it was only added to assist with the tests)
 	static func ==(lhs: Todo, rhs: Todo) -> Bool {
 		return
 			(lhs.guid == rhs.guid &&
@@ -39,7 +38,7 @@ class Todo: CustomDebugStringConvertible, Equatable {
 	}
 
 	// MARK: CustomDebugStringConvertible
-	var debugDescription: String {
+	override var debugDescription: String {
 		if let name = self.name {
 			return "[TODO]<\(guid!)> NAME:\(name) FAVOURITE:\(favorited!) STATE:\(state!)"
 		} else {
