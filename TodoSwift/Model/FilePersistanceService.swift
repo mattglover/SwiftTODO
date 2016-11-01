@@ -11,7 +11,6 @@ class FilePersistanceService : Persistance {
 			try data.write(to: filePath)
 			return (true, nil)
 		} catch {
-			print("Error saving file: \(filePath)")
 			return (false, FilePersistanceError.unableToSaveFile)
 		}
 	}
@@ -21,8 +20,7 @@ class FilePersistanceService : Persistance {
 		do {
 			let data = try Data(contentsOf: filePathURL)
 			return (data, nil)
-		} catch  {
-			print("Error loading file: \(filePathURL)")
+		} catch {
 			return (nil, FilePersistanceError.unableToLoadFile)
 		}
 	}

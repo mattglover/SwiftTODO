@@ -46,5 +46,14 @@ class FilePersistanceServiceTest: XCTestCase {
 			XCTFail()
 		}
 	}
-    
+
+	func testTryingToLoadDataWithInvalidFilename_returnsAnError() {
+		let filename = "fileDoesNotExistFilename.dat"
+		let (_, error) = sut.load(filename: filename)
+		if let thisError = error {
+			XCTAssertEqual(thisError, .unableToLoadFile)
+		} else {
+			XCTFail()
+		}
+	}
 }
