@@ -15,6 +15,8 @@
 		B2F70F9F1DC89010009FC34B /* TodoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70F9E1DC89010009FC34B /* TodoTest.swift */; };
 		B2F70FA11DC8A474009FC34B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70FA01DC8A474009FC34B /* Enums.swift */; };
 		B2F70FA41DC8A4A8009FC34B /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70FA31DC8A4A8009FC34B /* Todo.swift */; };
+		B2F70FA61DC8A684009FC34B /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70FA51DC8A684009FC34B /* TodoRepository.swift */; };
+		B2F70FA81DC8A6A0009FC34B /* TodoRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		B2F70F9E1DC89010009FC34B /* TodoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTest.swift; sourceTree = "<group>"; };
 		B2F70FA01DC8A474009FC34B /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		B2F70FA31DC8A4A8009FC34B /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		B2F70FA51DC8A684009FC34B /* TodoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
+		B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRepositoryTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +110,6 @@
 				B2F70F771DC88FDD009FC34B /* Assets.xcassets */,
 				B2F70F791DC88FDD009FC34B /* LaunchScreen.storyboard */,
 				B2F70F7C1DC88FDD009FC34B /* Info.plist */,
-				B2F70FA01DC8A474009FC34B /* Enums.swift */,
 			);
 			path = TodoSwift;
 			sourceTree = "<group>";
@@ -115,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F70F9E1DC89010009FC34B /* TodoTest.swift */,
+				B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */,
 				B2F70F871DC88FDD009FC34B /* Info.plist */,
 			);
 			path = TodoSwiftTests;
@@ -131,7 +135,9 @@
 		B2F70FA21DC8A49D009FC34B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B2F70FA01DC8A474009FC34B /* Enums.swift */,
 				B2F70FA31DC8A4A8009FC34B /* Todo.swift */,
+				B2F70FA51DC8A684009FC34B /* TodoRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F70FA61DC8A684009FC34B /* TodoRepository.swift in Sources */,
 				B2F70F731DC88FDD009FC34B /* ViewController.swift in Sources */,
 				B2F70FA11DC8A474009FC34B /* Enums.swift in Sources */,
 				B2F70F711DC88FDD009FC34B /* AppDelegate.swift in Sources */,
@@ -285,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F70F9F1DC89010009FC34B /* TodoTest.swift in Sources */,
+				B2F70FA81DC8A6A0009FC34B /* TodoRepositoryTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +534,7 @@
 				B2F70F971DC88FDE009FC34B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2F70F981DC88FDE009FC34B /* Build configuration list for PBXNativeTarget "TodoSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +543,7 @@
 				B2F70F9A1DC88FDE009FC34B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2F70F9B1DC88FDE009FC34B /* Build configuration list for PBXNativeTarget "TodoSwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +552,7 @@
 				B2F70F9D1DC88FDE009FC34B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
