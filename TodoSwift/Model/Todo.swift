@@ -16,10 +16,10 @@ class Todo: NSObject, NSCoding {
 	}
 
 	// MARK: Initialization
-	init(guid: String?, name: String?, favorited: Bool, state: TodoState) {
+	init(guid internalGuid: String?, name: String?, favorited: Bool, state: TodoState) {
 
-		if let localGuid = guid {
-			self.guid = localGuid
+		if let guid = internalGuid {
+			self.guid = guid
 		} else {
 			self.guid = UUID().uuidString
 		}

@@ -80,6 +80,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B27D81431DC8D27F0017934C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		B2F70F641DC88FDD009FC34B = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +110,7 @@
 		B2F70F6F1DC88FDD009FC34B /* TodoSwift */ = {
 			isa = PBXGroup;
 			children = (
+				B27D81431DC8D27F0017934C /* Protocols */,
 				B2F70FA21DC8A49D009FC34B /* Model */,
 				B2F70F701DC88FDD009FC34B /* AppDelegate.swift */,
 				B2F70F721DC88FDD009FC34B /* ViewController.swift */,
