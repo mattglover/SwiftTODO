@@ -15,6 +15,11 @@ class TodoRepository {
 		return todos.count
 	}
 
+	/// Method to fetch a Todo if present in respoitory
+	///
+	/// - parameter guid: String a Todo's unique identifier
+	///
+	/// - returns: Todo
 	func fetchTodo(guid: String) -> Todo? {
 		return todos[guid]
 	}

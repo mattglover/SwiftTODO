@@ -6,13 +6,6 @@ class Todo: CustomDebugStringConvertible, Equatable {
 	var name: String?
 	var favorited: Bool!
 	var state: TodoState!
-	var debugDescription: String {
-		if let name = self.name {
-			return "[TODO]<\(guid!)> NAME:\(name) FAVOURITE:\(favorited!) STATE:\(state!)"
-		} else {
-			return "[TODO]<\(guid!)> NAME:NO-NAME FAVOURITE:\(favorited!) STATE:\(state!)"
-		}
-	}
 
 	convenience init() {
 		self.init(guid: nil, name: nil, favorited: false, state: .NotDone)
@@ -35,11 +28,22 @@ class Todo: CustomDebugStringConvertible, Equatable {
 		self.state = state
 	}
 
+	// MARK: Equatable
+
 	static func ==(lhs: Todo, rhs: Todo) -> Bool {
 		return
 			(lhs.guid == rhs.guid &&
 			lhs.name == rhs.name &&
 			lhs.favorited == rhs.favorited &&
 			lhs.state == rhs.state)
+	}
+
+	// MARK: CustomDebugStringConvertible
+	var debugDescription: String {
+		if let name = self.name {
+			return "[TODO]<\(guid!)> NAME:\(name) FAVOURITE:\(favorited!) STATE:\(state!)"
+		} else {
+			return "[TODO]<\(guid!)> NAME:NO-NAME FAVOURITE:\(favorited!) STATE:\(state!)"
+		}
 	}
 }
