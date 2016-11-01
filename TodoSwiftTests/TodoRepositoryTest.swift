@@ -4,6 +4,7 @@ import XCTest
 
 class MockPersistanceService: Persistance {
 	var countOfSaveCalls = 0
+	var countOfLoadCalls = 0
 
 	func save(data: Data, filename: String) -> (Bool, FilePersistanceError?) {
 		countOfSaveCalls += 1
@@ -11,6 +12,7 @@ class MockPersistanceService: Persistance {
 	}
 
 	func load(filename: String) -> (Data?, FilePersistanceError?) {
+		countOfLoadCalls += 1
 		return (nil, nil)
 	}
 }
@@ -29,8 +31,17 @@ class TodoRepositoryTest: XCTestCase {
         super.tearDown()
     }
 
-	func testTestRepositoryExists() {
+	func testTodoRepositoryExists() {
 		XCTAssertNotNil(sut);
+	}
+
+	func testWhenSettingThePersistanceService_RepositoryAttemptsToLoadTodos() {
+		let mockPersistanceService = MockPersistanceService()
+
+		XCTAssertEqual(0, mockPersistanceService.countOfLoadCalls)
+		sut.persistanceService = mockPersistanceService
+
+		XCTAssertEqual(1, mockPersistanceService.countOfLoadCalls)
 	}
 
 	func testAddingTodo_CountOfTodosIsIncremented() {
@@ -74,10 +85,43 @@ class TodoRepositoryTest: XCTestCase {
 		XCTAssertNil(fetchedTodo)
 	}
 
+	func testUpdatingATodo() {
+		// Given
+		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		let guid = todo.guid!
+		sut.addTodo(todo: todo)
 
+		// When
+		if let fetchedTodo = sut.fetchTodo(guid: guid) {
+			fetchedTodo.name = "Bob Todo"
+			fetchedTodo.favorited = true
+			fetchedTodo.state = .Done
+			sut.update(todo:fetchedTodo)
+		}
 
-	// persist to disk
-	// ability to fetch only the guid without loading all the TODOs
-	// update todo
+		// Then
+		if let updatedTodoReFetched = sut.fetchTodo(guid: guid) {
+			XCTAssertEqual("Bob Todo", updatedTodoReFetched.name!)
+			XCTAssertEqual(true, updatedTodoReFetched.favorited)
+			XCTAssertEqual(.Done, updatedTodoReFetched.state)
+		}
+	}
+
+	func testUpdatingATodo_InvokesSaveCallOnPersistanceService() {
+		let mockPersistanceService = MockPersistanceService()
+		sut.persistanceService = mockPersistanceService
+
+		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		sut.addTodo(todo: todo)
+
+		let currentSaveCount = mockPersistanceService.countOfSaveCalls
+		if let fetchedTodo = sut.fetchTodo(guid: todo.guid!) {
+			fetchedTodo.name = "Updated Name for Todo"
+			sut.update(todo:fetchedTodo)
+		}
+
+		XCTAssertEqual(currentSaveCount + 1, mockPersistanceService.countOfSaveCalls)
+	}
+	
 	// fetch either Done or NotDone todo
 }

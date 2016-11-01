@@ -4,14 +4,23 @@ class TodoRepository {
 
 	static let todosDataFilename = "todos.dat"
 
-	var persistanceService: Persistance?
 	var todos = Dictionary<String, Todo>()
+	var persistanceService: Persistance? {
+		didSet {
+			loadTodos()
+		}
+	}
 
 	func addTodo(todo: Todo) {
 		if let unwrappedGUID = todo.guid {
 			todos[unwrappedGUID] = todo
 			saveTodos(todos: todos)
 		}
+	}
+
+	func update(todo: Todo) {
+		todos[todo.guid!] = todo
+		saveTodos(todos: todos)
 	}
 
 	func count() -> Int {
@@ -30,5 +39,15 @@ class TodoRepository {
 	private func saveTodos(todos: Dictionary<String, Todo>) {
 		let todosData = NSKeyedArchiver.archivedData(withRootObject: todos)
 		if let (_, _) = persistanceService?.save(data: todosData, filename: TodoRepository.todosDataFilename) {}
+	}
+
+	private func loadTodos() {
+		if let (data, error) = persistanceService?.load(filename: TodoRepository.todosDataFilename) {
+			if data != nil {
+				todos = NSKeyedUnarchiver.unarchiveObject(with: data!) as! Dictionary<String, Todo>
+			} else if error == FilePersistanceError.unableToLoadFile {
+				// Handle Error
+			}
+		}
 	}
 }
