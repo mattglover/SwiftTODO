@@ -1,6 +1,6 @@
 enum FilePersistanceError: Error {
-	case unableToSaveFile
-	case unableToLoadFile
+	case unableToSaveFile(filename: String)
+	case unableToLoadFile(filename: String)
 }
 
 enum TodoState : String {

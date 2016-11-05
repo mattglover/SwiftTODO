@@ -6,14 +6,14 @@ class MockPersistanceService: Persistance {
 	var countOfSaveCalls = 0
 	var countOfLoadCalls = 0
 
-	func save(data: Data, filename: String) -> (Bool, FilePersistanceError?) {
+	func save(data: Data, filename: String) throws -> Bool {
 		countOfSaveCalls += 1
-		return (false, nil)
+		return false
 	}
 
-	func load(filename: String) -> (Data?, FilePersistanceError?) {
+	func load(filename: String) throws -> Data? {
 		countOfLoadCalls += 1
-		return (nil, nil)
+		return nil
 	}
 }
 
@@ -122,6 +122,6 @@ class TodoRepositoryTest: XCTestCase {
 
 		XCTAssertEqual(currentSaveCount + 1, mockPersistanceService.countOfSaveCalls)
 	}
-	
+
 	// fetch either Done or NotDone todo
 }

@@ -4,24 +4,24 @@ class FilePersistanceService : Persistance {
 
 	let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
 
-	func save(data: Data, filename: String) -> (Bool, FilePersistanceError?) {
+	func save(data: Data, filename: String) throws -> Bool {
 		let filePath = documentsDirectory.appendingPathComponent(filename)
 
 		do {
 			try data.write(to: filePath)
-			return (true, nil)
+			return true
 		} catch {
-			return (false, FilePersistanceError.unableToSaveFile)
+			throw FilePersistanceError.unableToSaveFile(filename: filename)
 		}
 	}
 
-	func load(filename: String) -> (Data?, FilePersistanceError?) {
+	func load(filename: String) throws -> Data? {
 		let filePathURL = documentsDirectory.appendingPathComponent(filename)
 		do {
 			let data = try Data(contentsOf: filePathURL)
-			return (data, nil)
+			return data
 		} catch {
-			return (nil, FilePersistanceError.unableToLoadFile)
+			throw FilePersistanceError.unableToLoadFile(filename: filename)
 		}
 	}
 }

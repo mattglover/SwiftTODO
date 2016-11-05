@@ -21,10 +21,9 @@ class FilePersistanceServiceTest: XCTestCase {
 		let data = NSKeyedArchiver.archivedData(withRootObject: array)
 		let filename = "testCanSaveData.dat"
 
-		let (saveSuccess, error) = sut.save(data: data, filename: filename)
+		let saveSuccess = try! sut.save(data: data, filename: filename)
 
 		XCTAssertTrue(saveSuccess)
-		XCTAssertNil(error)
 	}
 
 	func testCanLoadDataFromFilename() {
@@ -32,28 +31,20 @@ class FilePersistanceServiceTest: XCTestCase {
 		let data = NSKeyedArchiver.archivedData(withRootObject: array)
 		let filename = "testCanLoadDataFromFilename.dat"
 
-		let (saveSuccess, _) = sut.save(data: data, filename: filename)
-		XCTAssertTrue(saveSuccess)
+		let _ = try! sut.save(data: data, filename: filename)
 
-		let (loadedData, error) = sut.load(filename: filename)
-		if let thisData = loadedData {
-			let loadedArray = NSKeyedUnarchiver.unarchiveObject(with: thisData) as! [String]
+			if let loadedData = try! sut.load(filename: filename) {
 
-			XCTAssertNotNil(loadedData)
-			XCTAssertNil(error)
-			XCTAssertEqual(2, loadedArray.count)
-		} else {
-			XCTFail()
+				let loadedArray = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as! [String]
+
+				XCTAssertNotNil(loadedData)
+				XCTAssertEqual(2, loadedArray.count)
+			}
 		}
-	}
 
-	func testTryingToLoadDataWithInvalidFilename_returnsAnError() {
+	func testTryingToLoadDataWithInvalidFilename_throwsAnError() {
 		let filename = "fileDoesNotExistFilename.dat"
-		let (_, error) = sut.load(filename: filename)
-		if let thisError = error {
-			XCTAssertEqual(thisError, .unableToLoadFile)
-		} else {
-			XCTFail()
-		}
+
+		XCTAssertThrowsError(try sut.load(filename: filename))
 	}
 }

@@ -38,16 +38,25 @@ class TodoRepository {
 
 	private func saveTodos(todos: Dictionary<String, Todo>) {
 		let todosData = NSKeyedArchiver.archivedData(withRootObject: todos)
-		if let (_, _) = persistanceService?.save(data: todosData, filename: TodoRepository.todosDataFilename) {}
+
+		do {
+			let _ = try persistanceService?.save(data: todosData, filename: TodoRepository.todosDataFilename)
+		} catch let error as FilePersistanceError {
+			print(error)
+		} catch let error {
+			print(error)
+		}
 	}
 
 	private func loadTodos() {
-		if let (data, error) = persistanceService?.load(filename: TodoRepository.todosDataFilename) {
-			if data != nil {
-				todos = NSKeyedUnarchiver.unarchiveObject(with: data!) as! Dictionary<String, Todo>
-			} else if error == FilePersistanceError.unableToLoadFile {
-				// Handle Error
+		do {
+			if let data = try persistanceService?.load(filename: TodoRepository.todosDataFilename) {
+				todos = NSKeyedUnarchiver.unarchiveObject(with: data) as! Dictionary<String, Todo>
 			}
+		} catch let error as FilePersistanceError {
+			print(error)
+		} catch let error {
+			print(error)
 		}
 	}
 }
