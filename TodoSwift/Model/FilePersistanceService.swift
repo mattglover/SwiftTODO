@@ -1,6 +1,6 @@
 import Foundation
 
-class FilePersistanceService : Persistance {
+class FilePersistanceService : PersistanceService {
 
 	let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
 

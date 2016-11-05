@@ -5,7 +5,7 @@ class TodoRepository {
 	static let todosDataFilename = "todos.dat"
 
 	var todos = Dictionary<String, Todo>()
-	var persistanceService: Persistance? {
+	var persistanceService: PersistanceService? {
 		didSet {
 			loadTodos()
 		}

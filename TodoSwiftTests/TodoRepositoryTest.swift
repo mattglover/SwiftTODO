@@ -2,7 +2,7 @@ import XCTest
 
 @testable import TodoSwift
 
-class MockPersistanceService: Persistance {
+class MockPersistanceService: PersistanceService {
 	var countOfSaveCalls = 0
 	var countOfLoadCalls = 0
 
