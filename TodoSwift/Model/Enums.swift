@@ -3,7 +3,7 @@ enum FilePersistanceError: Error {
 	case unableToLoadFile(filename: String)
 }
 
-enum TodoState : String {
-	case NotDone = "NotDone"
-	case Done = "Done"
+enum TodoState: String {
+	case notDone = "NotDone"
+	case done = "Done"
 }

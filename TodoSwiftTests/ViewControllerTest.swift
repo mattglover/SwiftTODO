@@ -58,8 +58,8 @@ class ViewControllerTest: XCTestCase {
 	}
 
 	func testWhenTodosHasTwoTodos_TableViewDataSourceReturnsTwoForNumberOfRowsInSectionZero() {
-		let todo1 = Todo(name: "Test One", favorited: false, state: .NotDone)
-		let todo2 = Todo(name: "Test Two", favorited: false, state: .NotDone)
+		let todo1 = Todo(name: "Test One", favorited: false, state: .notDone)
+		let todo2 = Todo(name: "Test Two", favorited: false, state: .notDone)
 		sut.todos = [todo1, todo2]
 
 		let tableView = self.tableView(fromSubviews: sut.view.subviews)

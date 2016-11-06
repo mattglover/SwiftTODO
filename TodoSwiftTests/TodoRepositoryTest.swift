@@ -30,7 +30,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 	}
 
 	func testAddingTodo_CountOfTodosIsIncremented() {
-		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		let todo = Todo(name: "Test Todo", favorited: false, state: .notDone)
 		sut.addTodo(todo: todo)
 
 		XCTAssertEqual(1, sut.count())
@@ -41,15 +41,15 @@ class TodoRepositoryServiceTest: XCTestCase {
 		sut.persistanceService = mockPersistanceService
 		XCTAssertEqual(0, mockPersistanceService.countOfSaveCalls)
 
-		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		let todo = Todo(name: "Test Todo", favorited: false, state: .notDone)
 		sut.addTodo(todo: todo)
 
 		XCTAssertEqual(1, mockPersistanceService.countOfSaveCalls)
 	}
 
 	func testFetchTodoByValidGUID_returnsCorrectTodo() {
-		let todo1 = Todo(guid:"ABCD-EDFGH", name: "Test Todo 1", favorited: false, state: .NotDone)
-		let todo2 = Todo(guid:"ZYXW-UVTSR", name: "Test Todo 2", favorited: false, state: .NotDone)
+		let todo1 = Todo(guid:"ABCD-EDFGH", name: "Test Todo 1", favorited: false, state: .notDone)
+		let todo2 = Todo(guid:"ZYXW-UVTSR", name: "Test Todo 2", favorited: false, state: .notDone)
 		sut.addTodo(todo: todo1)
 		sut.addTodo(todo: todo2)
 
@@ -61,8 +61,8 @@ class TodoRepositoryServiceTest: XCTestCase {
 	}
 
 	func testFetchTodoByInalidGUID_returnsNil() {
-		let todo1 = Todo(guid:"ABCD-EDFGH", name: "Test Todo 1", favorited: false, state: .NotDone)
-		let todo2 = Todo(guid:"ZYXW-UVTSR", name: "Test Todo 2", favorited: false, state: .NotDone)
+		let todo1 = Todo(guid:"ABCD-EDFGH", name: "Test Todo 1", favorited: false, state: .notDone)
+		let todo2 = Todo(guid:"ZYXW-UVTSR", name: "Test Todo 2", favorited: false, state: .notDone)
 		sut.addTodo(todo: todo1)
 		sut.addTodo(todo: todo2)
 
@@ -72,7 +72,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 
 	func testUpdatingATodo() {
 		// Given
-		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		let todo = Todo(name: "Test Todo", favorited: false, state: .notDone)
 		let guid = todo.guid!
 		sut.addTodo(todo: todo)
 
@@ -80,7 +80,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 		if let fetchedTodo = sut.fetchTodo(guid: guid) {
 			fetchedTodo.name = "Bob Todo"
 			fetchedTodo.favorited = true
-			fetchedTodo.state = .Done
+			fetchedTodo.state = .done
 			sut.update(todo:fetchedTodo)
 		}
 
@@ -88,7 +88,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 		if let updatedTodoReFetched = sut.fetchTodo(guid: guid) {
 			XCTAssertEqual("Bob Todo", updatedTodoReFetched.name!)
 			XCTAssertEqual(true, updatedTodoReFetched.favorited)
-			XCTAssertEqual(.Done, updatedTodoReFetched.state)
+			XCTAssertEqual(.done, updatedTodoReFetched.state)
 		}
 	}
 
@@ -96,7 +96,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 		let mockPersistanceService = MockPersistanceService()
 		sut.persistanceService = mockPersistanceService
 
-		let todo = Todo(name: "Test Todo", favorited: false, state: .NotDone)
+		let todo = Todo(name: "Test Todo", favorited: false, state: .notDone)
 		sut.addTodo(todo: todo)
 
 		let currentSaveCount = mockPersistanceService.countOfSaveCalls

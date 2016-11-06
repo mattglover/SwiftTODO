@@ -32,7 +32,7 @@ class Todo: NSObject, NSCoding {
 	}
 
 	convenience override init() {
-		self.init(guid: nil, name: nil, favorited: false, state: .NotDone)
+		self.init(guid: nil, name: nil, favorited: false, state: .notDone)
 	}
 
 	convenience init(name: String?, favorited: Bool, state: TodoState) {
