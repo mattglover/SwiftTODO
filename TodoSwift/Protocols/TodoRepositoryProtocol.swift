@@ -1,6 +1,6 @@
-protocol TodoRepository {
+protocol TodoRepositoryProtocol {
 
-	var persistanceService: PersistanceService?{ get set }
+	var persistanceService: PersistanceServiceProtocol?{ get set }
 
 	func addTodo(todo: Todo)
 	func update(todo: Todo)

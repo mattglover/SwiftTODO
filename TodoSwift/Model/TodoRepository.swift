@@ -1,11 +1,11 @@
 import Foundation
 
-class TodoRepositoryService: TodoRepository {
+class TodoRepository: TodoRepositoryProtocol {
 
 	static let todosDataFilename = "todos.dat"
 
 	var todos = Dictionary<String, Todo>()
-	var persistanceService: PersistanceService? {
+	var persistanceService: PersistanceServiceProtocol? {
 		didSet {
 			loadTodos()
 		}
@@ -40,7 +40,7 @@ class TodoRepositoryService: TodoRepository {
 		let todosData = NSKeyedArchiver.archivedData(withRootObject: todos)
 
 		do {
-			let _ = try persistanceService?.save(data: todosData, filename: TodoRepositoryService.todosDataFilename)
+			let _ = try persistanceService?.save(data: todosData, filename: TodoRepository.todosDataFilename)
 		} catch let error as FilePersistanceError {
 			print(error)
 		} catch let error {
@@ -50,7 +50,7 @@ class TodoRepositoryService: TodoRepository {
 
 	private func loadTodos() {
 		do {
-			if let data = try persistanceService?.load(filename: TodoRepositoryService.todosDataFilename) {
+			if let data = try persistanceService?.load(filename: TodoRepository.todosDataFilename) {
 				todos = NSKeyedUnarchiver.unarchiveObject(with: data) as! Dictionary<String, Todo>
 			}
 		} catch let error as FilePersistanceError {

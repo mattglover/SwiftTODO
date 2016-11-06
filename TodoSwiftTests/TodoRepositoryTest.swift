@@ -2,7 +2,7 @@ import XCTest
 
 @testable import TodoSwift
 
-class MockPersistanceService: PersistanceService {
+class MockPersistanceService: PersistanceServiceProtocol {
 	var countOfSaveCalls = 0
 	var countOfLoadCalls = 0
 
@@ -23,7 +23,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-		sut = TodoRepositoryService()
+		sut = TodoRepository()
     }
     
     override func tearDown() {
