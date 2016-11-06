@@ -38,6 +38,7 @@ class ViewControllerTest: XCTestCase {
 		XCTAssertNotNil(tableView.dataSource)
 	}
 
+	// MARK: UITableView DataSource Tests
 	func testWhenTodosIsNil_TableViewDataSourceReturnsZeroForNumberOfRowsInSectionZero() {
 		sut.todos = nil
 
