@@ -1,25 +1,6 @@
 import XCTest
 @testable import TodoSwift
 
-class MockTodoRepository: TodoRepository {
-
-	override func addTodo(todo: Todo) {
-		// Do something
-	}
-
-	override func update(todo: Todo) {
-		// Do something
-	}
-
-	override func count() -> Int {
-		return 0
-	}
-
-	override func fetchTodo(guid: String) -> Todo? {
-		return nil
-	}
-}
-
 class ViewControllerTest: XCTestCase {
 
 	var sut: ViewController!
@@ -55,6 +36,26 @@ class ViewControllerTest: XCTestCase {
 
 		XCTAssertNotNil(tableView.delegate)
 		XCTAssertNotNil(tableView.dataSource)
+	}
+
+	// MARK: Mock Object(s)
+	class MockTodoRepository: TodoRepository {
+
+		override func addTodo(todo: Todo) {
+			// Do something
+		}
+
+		override func update(todo: Todo) {
+			// Do something
+		}
+
+		override func count() -> Int {
+			return 0
+		}
+
+		override func fetchTodo(guid: String) -> Todo? {
+			return nil
+		}
 	}
 
 

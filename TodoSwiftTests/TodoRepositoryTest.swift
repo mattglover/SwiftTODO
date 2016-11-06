@@ -2,21 +2,6 @@ import XCTest
 
 @testable import TodoSwift
 
-class MockPersistanceService: PersistanceServiceProtocol {
-	var countOfSaveCalls = 0
-	var countOfLoadCalls = 0
-
-	func save(data: Data, filename: String) throws -> Bool {
-		countOfSaveCalls += 1
-		return false
-	}
-
-	func load(filename: String) throws -> Data? {
-		countOfLoadCalls += 1
-		return nil
-	}
-}
-
 class TodoRepositoryServiceTest: XCTestCase {
 
 	var sut: TodoRepository!
@@ -124,4 +109,22 @@ class TodoRepositoryServiceTest: XCTestCase {
 	}
 
 	// fetch either Done or NotDone todo
+
+
+
+	// MARK: Mock Object(s)
+	class MockPersistanceService: PersistanceServiceProtocol {
+		var countOfSaveCalls = 0
+		var countOfLoadCalls = 0
+
+		func save(data: Data, filename: String) throws -> Bool {
+			countOfSaveCalls += 1
+			return false
+		}
+
+		func load(filename: String) throws -> Data? {
+			countOfLoadCalls += 1
+			return nil
+		}
+	}
 }
