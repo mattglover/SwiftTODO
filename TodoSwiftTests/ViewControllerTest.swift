@@ -38,6 +38,35 @@ class ViewControllerTest: XCTestCase {
 		XCTAssertNotNil(tableView.dataSource)
 	}
 
+	func testWhenTodosIsNil_TableViewDataSourceReturnsZeroForNumberOfRowsInSectionZero() {
+		sut.todos = nil
+
+		let tableView = self.tableView(fromSubviews: sut.view.subviews)
+		let tableViewDataSource = tableView.dataSource
+
+		XCTAssertEqual(0, tableViewDataSource?.tableView(tableView, numberOfRowsInSection: 0))
+	}
+
+	func testWhenTodosIsEmpty_TableViewDataSourceReturnsZeroForNumberOfRowsInSectionZero() {
+		sut.todos = []
+
+		let tableView = self.tableView(fromSubviews: sut.view.subviews)
+		let tableViewDataSource = tableView.dataSource
+
+		XCTAssertEqual(0, tableViewDataSource?.tableView(tableView, numberOfRowsInSection: 0))
+	}
+
+	func testWhenTodosHasTwoTodos_TableViewDataSourceReturnsTwoForNumberOfRowsInSectionZero() {
+		let todo1 = Todo(name: "Test One", favorited: false, state: .NotDone)
+		let todo2 = Todo(name: "Test Two", favorited: false, state: .NotDone)
+		sut.todos = [todo1, todo2]
+
+		let tableView = self.tableView(fromSubviews: sut.view.subviews)
+		let tableViewDataSource = tableView.dataSource
+
+		XCTAssertEqual(2, tableViewDataSource?.tableView(tableView, numberOfRowsInSection: 0))
+	}
+
 	// MARK: Mock Object(s)
 	class MockTodoRepository: TodoRepository {
 

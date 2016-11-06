@@ -3,8 +3,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	var todoRepository: TodoRepositoryProtocol!
 	let cellReuseIdentifier = "cellReuseIdentifier"
+
+	var todoRepository: TodoRepositoryProtocol!
+	var todos:[Todo]?
 
 
 	// MARK: Initialization
@@ -54,7 +56,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		guard let todos = self.todos else {
+			return 0
+		}
+
+		return todos.count
 	}
 }
 
