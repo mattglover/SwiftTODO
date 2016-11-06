@@ -38,7 +38,7 @@ class ViewControllerTest: XCTestCase {
 		XCTAssertNotNil(sut.todoRepository)
 	}
 
-	func testWhenCreated_TableViewAddedAsSubview() {
+	func testWhenCreated_TableViewHasBeenAddedAsSubview() {
 		var hasTableView = false
 		for subview in sut.view.subviews {
 			if subview.isKind(of: UITableView.self) {
