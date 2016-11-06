@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B244DDC81DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244DDC71DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift */; };
+		B244DDCC1DCF4775006F1A73 /* ViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */; };
 		B27D81471DC8D3AE0017934C /* PersistanceServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */; };
 		B27D81491DC8D4730017934C /* FilePersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81481DC8D4730017934C /* FilePersistanceService.swift */; };
 		B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		B244DDC71DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTest.swift; sourceTree = "<group>"; };
 		B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceServiceProtocol.swift; sourceTree = "<group>"; };
 		B27D81481DC8D4730017934C /* FilePersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceService.swift; sourceTree = "<group>"; };
 		B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceServiceTest.swift; sourceTree = "<group>"; };
@@ -88,6 +90,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B244DDC91DCF4748006F1A73 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2F70F9E1DC89010009FC34B /* TodoTest.swift */,
+				B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */,
+				B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B244DDCA1DCF4757006F1A73 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		B27D81431DC8D27F0017934C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,9 +155,8 @@
 		B2F70F841DC88FDD009FC34B /* TodoSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				B2F70F9E1DC89010009FC34B /* TodoTest.swift */,
-				B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */,
-				B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */,
+				B244DDC91DCF4748006F1A73 /* Model */,
+				B244DDCA1DCF4757006F1A73 /* UI */,
 				B2F70F871DC88FDD009FC34B /* Info.plist */,
 			);
 			path = TodoSwiftTests;
@@ -316,6 +335,7 @@
 			files = (
 				B2F70F9F1DC89010009FC34B /* TodoTest.swift in Sources */,
 				B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */,
+				B244DDCC1DCF4775006F1A73 /* ViewControllerTest.swift in Sources */,
 				B2F70FA81DC8A6A0009FC34B /* TodoRepositoryTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
