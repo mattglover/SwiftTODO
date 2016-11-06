@@ -17,13 +17,13 @@ class MockPersistanceService: PersistanceService {
 	}
 }
 
-class TodoRepositoryTest: XCTestCase {
+class TodoRepositoryServiceTest: XCTestCase {
 
 	var sut: TodoRepository!
 
     override func setUp() {
         super.setUp()
-		sut = TodoRepository()
+		sut = TodoRepositoryService()
     }
     
     override func tearDown() {

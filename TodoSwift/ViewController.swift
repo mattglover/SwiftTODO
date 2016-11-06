@@ -3,13 +3,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	var todoRepository: TodoRepository!
+	var todoRepositoryService: TodoRepository!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		todoRepository = TodoRepository()
-		todoRepository.persistanceService = FilePersistanceService()
+		todoRepositoryService = TodoRepositoryService()
+		todoRepositoryService.persistanceService = FilePersistanceService()
 
 //		let todo1 = Todo(name: "Todo 1", favorited: false, state: .NotDone)
 //		let todo2 = Todo(name: "Todo 2", favorited: false, state: .NotDone)
