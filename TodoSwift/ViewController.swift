@@ -29,6 +29,11 @@ class ViewController: UIViewController {
 	}
 
 	func setupSubviews() {
+
+		let toolbar = UIToolbar.init(frame: .zero)
+		toolbar.translatesAutoresizingMaskIntoConstraints = false
+		self.view.addSubview(toolbar)
+
 		let tableview = UITableView.init(frame: .zero, style: .plain)
 		tableview.translatesAutoresizingMaskIntoConstraints = false
 		tableview.delegate   = self
@@ -36,15 +41,26 @@ class ViewController: UIViewController {
 		tableview.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
 		self.view.addSubview(tableview)
 
-		let views = ["tableview" : tableview]
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[tableview]|", options: .alignAllLeft, metrics: nil, views: views))
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|[tableview]|", options: .alignAllTop, metrics: nil, views: views))
+		let views   = ["tableview" : tableview, "toolbar" : toolbar]
+		let metrics = ["toolbarHeight" : 44.0]
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[toolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[tableview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|[toolbar(toolbarHeight)][tableview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		self.navigationController?.navigationBar.isTranslucent = false
+		self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
+
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(ViewController.addButtonTapped))
 	}
+
+	func addButtonTapped() {
+		print("Add Button Tapped")
+	}
+
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {

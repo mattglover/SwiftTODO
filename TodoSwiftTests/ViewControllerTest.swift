@@ -15,10 +15,18 @@ class ViewControllerTest: XCTestCase {
         super.tearDown()
     }
 
+	// MARK: View Lifecycle
 	func testWhenCreated_TodoRepositoryExists() {
 		XCTAssertNotNil(sut.todoRepository)
 	}
 
+	func testViewConfiguredOnceLoaded() {
+		let _ = sut.view // forces view to be created and viewDidLoad to be called
+
+		XCTAssertEqual(UIRectEdge(rawValue: 0), sut.edgesForExtendedLayout)
+	}
+
+	// MARK: Subviews
 	func testWhenCreated_TableViewHasBeenAddedAsSubview() {
 		var hasTableView = false
 		for subview in sut.view.subviews {
@@ -29,6 +37,18 @@ class ViewControllerTest: XCTestCase {
 		}
 
 		XCTAssertTrue(hasTableView)
+	}
+
+	func testWhenCreated_ToolbarHasBeenAddedAsSubview() {
+		var hasToolbar = false
+		for subview in sut.view.subviews {
+			if subview.isKind(of: UIToolbar.self) {
+				hasToolbar = true
+				break
+			}
+		}
+
+		XCTAssertTrue(hasToolbar)
 	}
 
 	func testTableViewHasADataSourceAndDelegate() {
@@ -66,6 +86,14 @@ class ViewControllerTest: XCTestCase {
 		let tableViewDataSource = tableView.dataSource
 
 		XCTAssertEqual(2, tableViewDataSource?.tableView(tableView, numberOfRowsInSection: 0))
+	}
+
+	func testAddButtonHasTargetAndAction() {
+		let _ = sut.view
+		let addButton: UIBarButtonItem = sut.navigationItem.leftBarButtonItem!
+
+		XCTAssertNotNil(addButton.target)
+		XCTAssertNotNil(addButton.action)
 	}
 
 	// MARK: Mock Object(s)
