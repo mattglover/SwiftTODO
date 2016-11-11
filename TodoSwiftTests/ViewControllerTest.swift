@@ -88,12 +88,29 @@ class ViewControllerTest: XCTestCase {
 		XCTAssertEqual(2, tableViewDataSource?.tableView(tableView, numberOfRowsInSection: 0))
 	}
 
+	// MARK: Add Button .. 1.VC has Button .. 2.Button has correct Action .. 3.VC responds to Action
 	func testAddButtonHasTargetAndAction() {
 		let _ = sut.view
 		let addButton: UIBarButtonItem = sut.navigationItem.leftBarButtonItem!
 
+		XCTAssertNotNil(addButton);
 		XCTAssertNotNil(addButton.target)
 		XCTAssertNotNil(addButton.action)
+	}
+
+	func testAddButtonHasTheActionCalled_addButtonTapped() {
+		let _ = sut.view
+		let addButton: UIBarButtonItem = sut.navigationItem.leftBarButtonItem!
+
+		XCTAssertEqual(#selector(ViewController.addButtonTapped), addButton.action!)
+	}
+
+	func testVCRespondsToAddButtonsAction() {
+		let _ = sut.view
+		let addButton: UIBarButtonItem = sut.navigationItem.leftBarButtonItem!
+
+		let selector = addButton.action!
+		XCTAssertTrue(sut.responds(to: selector)) // Possible unnecessary test - Compiler error if action is not implemented
 	}
 
 	// MARK: Mock Object(s)

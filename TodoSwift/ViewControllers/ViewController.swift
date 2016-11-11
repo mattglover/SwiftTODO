@@ -60,7 +60,6 @@ class ViewController: UIViewController {
 	func addButtonTapped() {
 		print("Add Button Tapped")
 	}
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
