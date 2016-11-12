@@ -12,6 +12,9 @@
 		B27D81471DC8D3AE0017934C /* PersistanceServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */; };
 		B27D81491DC8D4730017934C /* FilePersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81481DC8D4730017934C /* FilePersistanceService.swift */; };
 		B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */; };
+		B2E1E3201DD645DF00D2DC8E /* AddNewTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1E31F1DD645DF00D2DC8E /* AddNewTodoViewController.swift */; };
+		B2E1E3221DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1E3211DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift */; };
+		B2E1E3241DD646C100D2DC8E /* AddNewTodoViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1E3231DD646C100D2DC8E /* AddNewTodoViewControllerProtocol.swift */; };
 		B2F70F711DC88FDD009FC34B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70F701DC88FDD009FC34B /* AppDelegate.swift */; };
 		B2F70F731DC88FDD009FC34B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F70F721DC88FDD009FC34B /* ViewController.swift */; };
 		B2F70F761DC88FDD009FC34B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F70F741DC88FDD009FC34B /* Main.storyboard */; };
@@ -47,6 +50,9 @@
 		B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceServiceProtocol.swift; sourceTree = "<group>"; };
 		B27D81481DC8D4730017934C /* FilePersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceService.swift; sourceTree = "<group>"; };
 		B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceServiceTest.swift; sourceTree = "<group>"; };
+		B2E1E31F1DD645DF00D2DC8E /* AddNewTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTodoViewController.swift; sourceTree = "<group>"; };
+		B2E1E3211DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTodoViewControllerTest.swift; sourceTree = "<group>"; };
+		B2E1E3231DD646C100D2DC8E /* AddNewTodoViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTodoViewControllerProtocol.swift; sourceTree = "<group>"; };
 		B2F70F6D1DC88FDD009FC34B /* TodoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F70F701DC88FDD009FC34B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F70F721DC88FDD009FC34B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */,
+				B2E1E3211DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -113,6 +120,7 @@
 			children = (
 				B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */,
 				B244DDC71DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift */,
+				B2E1E3231DD646C100D2DC8E /* AddNewTodoViewControllerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -121,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F70F721DC88FDD009FC34B /* ViewController.swift */,
+				B2E1E31F1DD645DF00D2DC8E /* AddNewTodoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -339,9 +348,11 @@
 				B27D81491DC8D4730017934C /* FilePersistanceService.swift in Sources */,
 				B2F70FA11DC8A474009FC34B /* Enums.swift in Sources */,
 				B2F70F711DC88FDD009FC34B /* AppDelegate.swift in Sources */,
+				B2E1E3201DD645DF00D2DC8E /* AddNewTodoViewController.swift in Sources */,
 				B244DDC81DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift in Sources */,
 				B2F70FA41DC8A4A8009FC34B /* Todo.swift in Sources */,
 				B27D81471DC8D3AE0017934C /* PersistanceServiceProtocol.swift in Sources */,
+				B2E1E3241DD646C100D2DC8E /* AddNewTodoViewControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F70F9F1DC89010009FC34B /* TodoTest.swift in Sources */,
+				B2E1E3221DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift in Sources */,
 				B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */,
 				B244DDCC1DCF4775006F1A73 /* ViewControllerTest.swift in Sources */,
 				B2F70FA81DC8A6A0009FC34B /* TodoRepositoryTest.swift in Sources */,

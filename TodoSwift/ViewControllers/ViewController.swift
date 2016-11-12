@@ -58,7 +58,9 @@ class ViewController: UIViewController {
 	}
 
 	func addButtonTapped() {
-		print("Add Button Tapped")
+		let addNewTodoViewController = AddNewTodoViewController(delegate: self)
+		let navigationViewController = UINavigationController(rootViewController: addNewTodoViewController)
+		self.present(navigationViewController, animated: true, completion: nil)
 	}
 }
 
@@ -76,6 +78,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 		}
 
 		return todos.count
+	}
+}
+
+extension ViewController: AddNewTodoViewControllerDelegate {
+	internal func addNewTodoViewController(viewController: AddNewTodoViewControllerProtocol, didCreateTodo: Todo) {
+		print("addNewTodoViewController:didCreateTodo:")
+	}
+
+	internal func addNewTodoViewControllerDidCancel(viewController: AddNewTodoViewControllerProtocol) {
+		self.dismiss(animated: true, completion: nil)
 	}
 }
 
