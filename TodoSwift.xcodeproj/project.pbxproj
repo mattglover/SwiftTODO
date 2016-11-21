@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B22E29FB1DE36FBD00C52E32 /* FavoriteToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22E29FA1DE36FBD00C52E32 /* FavoriteToolbar.swift */; };
+		B22E29FE1DE3709E00C52E32 /* FavoriteToolbarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22E29FD1DE3709E00C52E32 /* FavoriteToolbarTest.swift */; };
 		B244DDC81DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244DDC71DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift */; };
 		B244DDCC1DCF4775006F1A73 /* ViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */; };
 		B27D81471DC8D3AE0017934C /* PersistanceServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */; };
@@ -45,13 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B22E29FA1DE36FBD00C52E32 /* FavoriteToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteToolbar.swift; sourceTree = "<group>"; };
+		B22E29FD1DE3709E00C52E32 /* FavoriteToolbarTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteToolbarTest.swift; sourceTree = "<group>"; };
 		B244DDC71DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRepositoryProtocol.swift; sourceTree = "<group>"; };
-		B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTest.swift; sourceTree = "<group>"; };
+		B244DDCB1DCF4775006F1A73 /* ViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerTest.swift; path = "View Controller Tests/ViewControllerTest.swift"; sourceTree = "<group>"; };
 		B27D81461DC8D3AE0017934C /* PersistanceServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceServiceProtocol.swift; sourceTree = "<group>"; };
 		B27D81481DC8D4730017934C /* FilePersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceService.swift; sourceTree = "<group>"; };
-		B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePersistanceServiceTest.swift; sourceTree = "<group>"; };
+		B27D814C1DC8D8400017934C /* FilePersistanceServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilePersistanceServiceTest.swift; path = "Model Tests/FilePersistanceServiceTest.swift"; sourceTree = "<group>"; };
 		B2E1E31F1DD645DF00D2DC8E /* AddNewTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTodoViewController.swift; sourceTree = "<group>"; };
-		B2E1E3211DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTodoViewControllerTest.swift; sourceTree = "<group>"; };
+		B2E1E3211DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewTodoViewControllerTest.swift; path = "View Controller Tests/AddNewTodoViewControllerTest.swift"; sourceTree = "<group>"; };
 		B2E1E3231DD646C100D2DC8E /* AddNewTodoViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTodoViewControllerProtocol.swift; sourceTree = "<group>"; };
 		B2F70F6D1DC88FDD009FC34B /* TodoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F70F701DC88FDD009FC34B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,11 +68,11 @@
 		B2F70F871DC88FDD009FC34B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F70F8C1DC88FDD009FC34B /* TodoSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F70F921DC88FDE009FC34B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2F70F9E1DC89010009FC34B /* TodoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTest.swift; sourceTree = "<group>"; };
+		B2F70F9E1DC89010009FC34B /* TodoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodoTest.swift; path = "Model Tests/TodoTest.swift"; sourceTree = "<group>"; };
 		B2F70FA01DC8A474009FC34B /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		B2F70FA31DC8A4A8009FC34B /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		B2F70FA51DC8A684009FC34B /* TodoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
-		B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRepositoryTest.swift; sourceTree = "<group>"; };
+		B2F70FA71DC8A6A0009FC34B /* TodoRepositoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodoRepositoryTest.swift; path = "Model Tests/TodoRepositoryTest.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B22E29F91DE36F9B00C52E32 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				B22E29FA1DE36FBD00C52E32 /* FavoriteToolbar.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		B22E29FC1DE36FFB00C52E32 /* CustomView Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B22E29FD1DE3709E00C52E32 /* FavoriteToolbarTest.swift */,
+			);
+			path = "CustomView Tests";
+			sourceTree = "<group>";
+		};
 		B244DDC91DCF4748006F1A73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +191,7 @@
 			children = (
 				B27D81431DC8D27F0017934C /* Protocols */,
 				B2F70FA21DC8A49D009FC34B /* Model */,
+				B22E29F91DE36F9B00C52E32 /* Custom Views */,
 				B2E1E31D1DD6431100D2DC8E /* ViewControllers */,
 				B2E1E31E1DD6434500D2DC8E /* AppDelegate and Resources */,
 			);
@@ -181,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				B244DDC91DCF4748006F1A73 /* Model */,
+				B22E29FC1DE36FFB00C52E32 /* CustomView Tests */,
 				B244DDCA1DCF4757006F1A73 /* UI */,
 				B2F70F871DC88FDD009FC34B /* Info.plist */,
 			);
@@ -347,6 +369,7 @@
 				B2F70F731DC88FDD009FC34B /* ViewController.swift in Sources */,
 				B27D81491DC8D4730017934C /* FilePersistanceService.swift in Sources */,
 				B2F70FA11DC8A474009FC34B /* Enums.swift in Sources */,
+				B22E29FB1DE36FBD00C52E32 /* FavoriteToolbar.swift in Sources */,
 				B2F70F711DC88FDD009FC34B /* AppDelegate.swift in Sources */,
 				B2E1E3201DD645DF00D2DC8E /* AddNewTodoViewController.swift in Sources */,
 				B244DDC81DCF3DA4006F1A73 /* TodoRepositoryProtocol.swift in Sources */,
@@ -363,6 +386,7 @@
 				B2F70F9F1DC89010009FC34B /* TodoTest.swift in Sources */,
 				B2E1E3221DD6461500D2DC8E /* AddNewTodoViewControllerTest.swift in Sources */,
 				B27D814D1DC8D8400017934C /* FilePersistanceServiceTest.swift in Sources */,
+				B22E29FE1DE3709E00C52E32 /* FavoriteToolbarTest.swift in Sources */,
 				B244DDCC1DCF4775006F1A73 /* ViewControllerTest.swift in Sources */,
 				B2F70FA81DC8A6A0009FC34B /* TodoRepositoryTest.swift in Sources */,
 			);
