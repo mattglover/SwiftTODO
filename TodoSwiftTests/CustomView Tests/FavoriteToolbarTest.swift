@@ -29,6 +29,11 @@ class FavoriteToolbarTest: XCTestCase {
 		XCTAssertTrue(hasSegmentedControl)
 	}
 
+	// MARK: Favorite Toolbar
+	func testFavoriteToolbarInitialSelectedOption_IsAll() {
+		XCTAssertEqual(.all, sut.selectedOption)
+	}
+
 	// MARK: Delegate and Delegate Methods
 	func testDoesNotHaveADelegateUnlessDelegateIsSet() {
 		XCTAssertNil(sut.delegate)
@@ -41,7 +46,6 @@ class FavoriteToolbarTest: XCTestCase {
 
 	func testDelegateIsCalledWhenSegmentChanges() {
 		let mockDelegate = MockFavoriteToolbarDelegate()
-		XCTAssertNil(mockDelegate.delegateDidSelectedIndex)
 
 		sut.favoriteToolbarDelegate = mockDelegate
 		let segmentedControl = self.segmentedControl(fromToolbar: sut)

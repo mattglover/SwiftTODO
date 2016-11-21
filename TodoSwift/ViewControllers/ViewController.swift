@@ -32,7 +32,7 @@ class ViewController: UIViewController {
 
 		self.title = NSLocalizedString("Todos", comment: "")
 
-		let toolbar = UIToolbar.init(frame: .zero)
+		let toolbar = FavoriteToolbar.init(frame: .zero)
 		toolbar.translatesAutoresizingMaskIntoConstraints = false
 		self.view.addSubview(toolbar)
 

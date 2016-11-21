@@ -11,6 +11,7 @@ protocol FavoriteToolbarDelegate {
 class FavoriteToolbar: UIToolbar {
 
 	var favoriteToolbarDelegate: FavoriteToolbarDelegate?
+	var selectedOption: FavoriteToolbarSelection? = .all
 
 	fileprivate lazy var segmentedControl : UISegmentedControl = {
 		let segmentedControl = UISegmentedControl(frame: .zero);
@@ -34,6 +35,13 @@ extension FavoriteToolbar {
 		translatesAutoresizingMaskIntoConstraints = false
 		addSubview(segmentedControl)
 
+		let views = ["segmentedControl" : segmentedControl]
+		NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[segmentedControl]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[segmentedControl]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+
+		setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+		segmentedControl.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+
 		segmentedControl.insertSegment(withTitle: NSLocalizedString("All", comment: ""), at: 0, animated: false)
 		segmentedControl.insertSegment(withTitle: NSLocalizedString("Favorite", comment: ""), at: 1, animated: false)
 		segmentedControl.addTarget(self, action: #selector(FavoriteToolbar.segmentedControlValueChanged(_:)), for: .valueChanged)
@@ -42,11 +50,13 @@ extension FavoriteToolbar {
 	func segmentedControlValueChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 		case 0:
-			favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: .all)
+			selectedOption = .all
 		case 1:
-			favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: .favorite)
+			selectedOption = .favorite
 		default:
-			favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: nil)
+			selectedOption = nil
 		}
+
+		favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: selectedOption)
 	}
 }
