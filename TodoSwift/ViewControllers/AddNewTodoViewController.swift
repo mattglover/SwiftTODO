@@ -1,5 +1,9 @@
 import UIKit
 
+/// This is a simple View Controller with not persistance dependancy
+/// Activity performed with this AddNewTodoViewController is reported
+/// via is delegate `AddNewTodoViewControllerDelegate`
+
 class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtocol, UITextFieldDelegate {
 
 	var delegate: AddNewTodoViewControllerDelegate?
