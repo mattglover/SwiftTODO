@@ -9,3 +9,8 @@ Simple application to improve Swift skills.
 
 ### Architecture
 ![Architecture](https://raw.githubusercontent.com/mattglover/SwiftTODO/master/images/SwiftTodo_SimpleArchitecture.png "Simple Class Architecture image")
+
+
+### Questions and further investigation
+[] Understand `extension` best practices  
+[] UnitTest NSLocalizedString
