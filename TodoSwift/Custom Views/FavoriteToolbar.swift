@@ -4,6 +4,10 @@ protocol FavoriteToolbarDelegate {
 	func favoriteToolbar(_ toolbar: FavoriteToolbar, didSelectOption: FavoriteToolbarSelection?)
 }
 
+/// Simple Toolbar with two segment Control with "All" and "Favorite" options
+/// deliberately simple and un-flexible conforming to TDD principles.
+/// fighting the instinct to over-engineer a solution :)
+///
 class FavoriteToolbar: UIToolbar {
 
 	var favoriteToolbarDelegate: FavoriteToolbarDelegate?
