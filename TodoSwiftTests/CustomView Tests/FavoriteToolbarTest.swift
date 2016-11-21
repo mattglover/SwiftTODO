@@ -29,6 +29,31 @@ class FavoriteToolbarTest: XCTestCase {
 		XCTAssertTrue(hasSegmentedControl)
 	}
 
+	// MARK: Delegate and Delegate Methods
+	func testDoesNotHaveADelegateUnlessDelegateIsSet() {
+		XCTAssertNil(sut.delegate)
+
+		let mockDelegate = MockFavoriteToolbarDelegate()
+		sut.favoriteToolbarDelegate = mockDelegate
+
+		XCTAssertNotNil(sut.favoriteToolbarDelegate)
+	}
+
+	func testDelegateIsCalledWhenSegmentChanges() {
+		let mockDelegate = MockFavoriteToolbarDelegate()
+		XCTAssertNil(mockDelegate.delegateDidSelectedIndex)
+
+		sut.favoriteToolbarDelegate = mockDelegate
+		let segmentedControl = self.segmentedControl(fromToolbar: sut)
+		segmentedControl.selectedSegmentIndex = 1
+		segmentedControl.sendActions(for: .valueChanged)
+		XCTAssertEqual(.favorite, mockDelegate.delegateDidSelectedIndex);
+
+		segmentedControl.selectedSegmentIndex = 0
+		segmentedControl.sendActions(for: .valueChanged)
+		XCTAssertEqual(.all, mockDelegate.delegateDidSelectedIndex);
+	}
+
 	// MARK: SegmentedControl
 	func testSegmentedControl_hasHasTwoSegments() {
 		let segmentedControl = self.segmentedControl(fromToolbar: sut)
@@ -36,6 +61,7 @@ class FavoriteToolbarTest: XCTestCase {
 		XCTAssertEqual(2, segmentedControl.numberOfSegments)
 	}
 
+	// MARK: Helpers
 	func segmentedControl(fromToolbar: FavoriteToolbar) -> UISegmentedControl {
 		var segmentedControl: UISegmentedControl!
 		for subview in fromToolbar.subviews {
@@ -45,5 +71,14 @@ class FavoriteToolbarTest: XCTestCase {
 			}
 		}
 		return segmentedControl
+	}
+
+	// MARK: Mock Object(s)
+	class MockFavoriteToolbarDelegate: FavoriteToolbarDelegate {
+		var delegateDidSelectedIndex: FavoriteToolbarSelection?
+
+		func favoriteToolbar(_ toolbar: FavoriteToolbar, didSelectOption: FavoriteToolbarSelection?) {
+				delegateDidSelectedIndex = didSelectOption
+		}
 	}
 }

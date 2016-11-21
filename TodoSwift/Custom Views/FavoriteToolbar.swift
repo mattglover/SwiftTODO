@@ -1,6 +1,12 @@
 import UIKit
 
+protocol FavoriteToolbarDelegate {
+	func favoriteToolbar(_ toolbar: FavoriteToolbar, didSelectOption: FavoriteToolbarSelection?)
+}
+
 class FavoriteToolbar: UIToolbar {
+
+	var favoriteToolbarDelegate: FavoriteToolbarDelegate?
 
 	fileprivate lazy var segmentedControl : UISegmentedControl = {
 		let segmentedControl = UISegmentedControl(frame: .zero);
@@ -26,6 +32,17 @@ extension FavoriteToolbar {
 
 		segmentedControl.insertSegment(withTitle: NSLocalizedString("All", comment: ""), at: 0, animated: false)
 		segmentedControl.insertSegment(withTitle: NSLocalizedString("Favorite", comment: ""), at: 1, animated: false)
+		segmentedControl.addTarget(self, action: #selector(FavoriteToolbar.segmentedControlValueChanged(_:)), for: .valueChanged)
+	}
+
+	func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+		switch sender.selectedSegmentIndex {
+		case 0:
+			favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: .all)
+		case 1:
+			favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: .favorite)
+		default:
+			favoriteToolbarDelegate?.favoriteToolbar(self, didSelectOption: nil)
+		}
 	}
 }
-
