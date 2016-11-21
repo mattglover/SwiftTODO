@@ -7,7 +7,6 @@ import UIKit
 class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtocol, UITextFieldDelegate {
 
 	var delegate: AddNewTodoViewControllerDelegate?
-	var todo = Todo()
 
 	let todoNameLabel 	  = UILabel()
 	let todoNameTextField = UITextField()
@@ -57,9 +56,21 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 
 		self.navigationItem.leftBarButtonItem  = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(AddNewTodoViewController.cancelButtonTapped))
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(AddNewTodoViewController.saveButtonTapped))
+
+		self.updateUI()
+	}
+
+	func updateUI() {
+		let isNotEmptyString = (todoNameTextField.text?.characters.count)! > 0
+		self.navigationItem.rightBarButtonItem?.isEnabled = isNotEmptyString
 	}
 
 	func saveButtonTapped() {
+		guard let todoName = todoNameTextField.text else {
+			return
+		}
+
+		let todo = Todo(name: todoName, favorited: false, state: .notDone)
 		delegate?.addNewTodoViewController(viewController: self, didCreateTodo: todo)
 	}
 

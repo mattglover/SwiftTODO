@@ -44,14 +44,27 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		XCTAssertNotNil(saveButton.action)
 	}
 
-	func testSaveButtonTapped_callsCorrectMethodOnDelegate() {
+	func testWhenTodoNameTextFieldIsEmpty_SaveButtonIsNotEnabled() {
 		let _ = sut.view
+		let saveButton: UIBarButtonItem = sut.navigationItem.rightBarButtonItem!
+
+		sut.todoNameTextField.text = nil
+		XCTAssertFalse(saveButton.isEnabled)
+
+		sut.todoNameTextField.text = ""
+		XCTAssertFalse(saveButton.isEnabled)
+	}
+
+	func testWhenTodoNameTextFieldIsPopulatedAndSaveButtonTapped_callsCorrectMethodOnDelegateWithTodoArgument() {
+		let _ = sut.view
+		sut.todoNameTextField.text = "Todo Test Name"
 		let saveButton: UIBarButtonItem = sut.navigationItem.rightBarButtonItem!
 		XCTAssertEqual(#selector(AddNewTodoViewController.saveButtonTapped), saveButton.action!)
 
 		XCTAssertFalse(mockDelegate.delegateDidCreateTodoWasCalled)
 		sut.saveButtonTapped()
 		XCTAssertTrue(mockDelegate.delegateDidCreateTodoWasCalled)
+		XCTAssertNotNil(mockDelegate.createdTodo)
 	}
 
 	// MARK: Cancel Button
@@ -102,9 +115,11 @@ class AddNewTodoViewControllerTest: XCTestCase {
 
 		var delegateCanceledWasCalled = false
 		var delegateDidCreateTodoWasCalled = false
+		var createdTodo: Todo?
 
-		func addNewTodoViewController(viewController: AddNewTodoViewControllerProtocol, didCreateTodo: Todo) {
+		func addNewTodoViewController(viewController: AddNewTodoViewControllerProtocol, didCreateTodo todo: Todo) {
 			delegateDidCreateTodoWasCalled = true
+			createdTodo = todo
 		}
 
 		func addNewTodoViewControllerDidCancel(viewController: AddNewTodoViewControllerProtocol){
