@@ -47,6 +47,17 @@ class TodoRepositoryServiceTest: XCTestCase {
 		XCTAssertEqual(1, mockPersistanceService.countOfSaveCalls)
 	}
 
+	func testAddingTodo_InvokesDidAddTodoNotification() {
+
+		let mockNotificationCenter = MockNotificationCenter()
+		sut.notificationCenter = mockNotificationCenter
+
+		let todo = Todo(name: "Test Todo", favorited: false, state: .notDone)
+		sut.addTodo(todo: todo)
+
+		XCTAssertTrue(mockNotificationCenter.didReceivePostNotificationForNewTodoAdded)
+	}
+
 	func testFetchTodoByValidGUID_returnsCorrectTodo() {
 		let todo1 = Todo(guid:"ABCD-EDFGH", name: "Test Todo 1", favorited: false, state: .notDone)
 		let todo2 = Todo(guid:"ZYXW-UVTSR", name: "Test Todo 2", favorited: false, state: .notDone)
@@ -127,4 +138,16 @@ class TodoRepositoryServiceTest: XCTestCase {
 			return nil
 		}
 	}
+
+	class MockNotificationCenter: NotificationCenter {
+
+		var didReceivePostNotificationForNewTodoAdded = false
+
+		override func post(name aName: NSNotification.Name, object anObject: Any?) {
+			if (aName.rawValue == "todoRepositoryServiceDidAddNewTodo") {
+				didReceivePostNotificationForNewTodoAdded = true
+			}
+		}
+	}
+
 }

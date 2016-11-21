@@ -11,9 +11,14 @@ class TodoRepository: TodoRepositoryProtocol {
 		}
 	}
 
+	lazy var notificationCenter: NotificationCenter = {
+		return .default
+	}()
+
 	func addTodo(todo: Todo) {
 		if let unwrappedGUID = todo.guid {
 			todos[unwrappedGUID] = todo
+			notificationCenter.post(name: Notification.Name("todoRepositoryServiceDidAddNewTodo"), object: todo)
 			saveTodos(todos: todos)
 		}
 	}
