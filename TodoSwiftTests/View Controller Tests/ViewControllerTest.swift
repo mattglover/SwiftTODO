@@ -118,11 +118,26 @@ class ViewControllerTest: XCTestCase {
 		XCTAssertTrue(sut.responds(to: selector)) // Possible unnecessary test - Compiler error if action is not implemented
 	}
 
+	// MARK: AddNewTodoViewController Delegate Methods
+	func testReceivingAddNewTodoViewControllerDidCreateTodoDelegateMethod_InvokesAddTodoOnTodoRepository() {
+		let _ = sut.view
+		let mockTodoRepository = MockTodoRepository()
+		sut.todoRepository = mockTodoRepository
+
+		let mockTodo = Todo()
+		let mockVC   = MockAddNewTodoViewController(delegate: nil)
+		sut.addNewTodoViewController(viewController: mockVC, didCreateTodo: mockTodo)
+
+		XCTAssertTrue(mockTodoRepository.addTodoWasCalled)
+	}
+
 	// MARK: Mock Object(s)
 	class MockTodoRepository: TodoRepository {
 
+		var addTodoWasCalled = false
+
 		override func addTodo(todo: Todo) {
-			// Do something
+			addTodoWasCalled = true
 		}
 
 		override func update(todo: Todo) {
@@ -138,6 +153,11 @@ class ViewControllerTest: XCTestCase {
 		}
 	}
 
+	class MockAddNewTodoViewController: AddNewTodoViewControllerProtocol {
+		required init(delegate: AddNewTodoViewControllerDelegate?) {
+			
+		}
+	}
 
 	// MARK: Helpers : TableView
 	func tableView(fromSubviews: [UIView]) -> UITableView {

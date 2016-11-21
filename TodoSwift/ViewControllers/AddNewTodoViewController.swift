@@ -36,19 +36,22 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 		self.title = NSLocalizedString("Add Todo", comment: "")
 
 		todoNameLabel.translatesAutoresizingMaskIntoConstraints = false
+		todoNameLabel.text = NSLocalizedString("Todo Name:", comment: "")
 		self.view.addSubview(todoNameLabel)
 
 		todoNameTextField.translatesAutoresizingMaskIntoConstraints = false
 		todoNameTextField.delegate = self
+		todoNameTextField.addTarget(self, action: #selector(AddNewTodoViewController.textFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
+		todoNameTextField.borderStyle = .roundedRect
 		self.view.addSubview(todoNameTextField)
 	}
 
 	func setupConstraints() {
 		let views   = ["todoNameLabel" : todoNameLabel, "todoNameTextField" : todoNameTextField]
 		let metrics:[String:Any] = [:]
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[todoNameLabel]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[todoNameTextField]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|-(64)-[todoNameLabel]-[todoNameTextField]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|-[todoNameLabel]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|-(16)-[todoNameTextField]-(16)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|-(64)-[todoNameLabel]-(16)-[todoNameTextField]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
 	}
 
 	override func viewDidLoad() {
@@ -76,5 +79,9 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 
 	func cancelButtonTapped() {
 		delegate?.addNewTodoViewControllerDidCancel(viewController: self)
+	}
+
+	func textFieldDidChange(sender: UITextField) {
+		updateUI()
 	}
 }

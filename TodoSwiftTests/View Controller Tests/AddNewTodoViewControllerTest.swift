@@ -34,6 +34,42 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		XCTAssertEqual(sut.title, "Add Todo")
 	}
 
+	// MARK: Subviews
+	func testBackgroundColorIsWhite() {
+		let _ = sut.view
+		XCTAssertEqual(sut.view.backgroundColor, .white)
+	}
+
+	func testHasCorrectSubviews() {
+		let _ = sut.view
+
+		XCTAssertNotNil(sut.todoNameLabel)
+		XCTAssertNotNil(sut.todoNameTextField)
+
+		XCTAssertEqual(sut.view, sut.todoNameLabel.superview)
+		XCTAssertEqual(sut.view, sut.todoNameTextField.superview)
+	}
+
+	// MARK: TodoName Label
+	func testTodoLabel_IsCorrect() {
+		let _ = sut.view
+
+		XCTAssertEqual("Todo Name:", sut.todoNameLabel.text)
+	}
+
+	// MARK: TodoNameTextField
+	func testTodoNameTextField_hasADelegate() {
+		let _ = sut.view
+
+		XCTAssertNotNil(sut.todoNameTextField.delegate)
+	}
+
+	func testTodoNameTextField_hasRoundedRectBorder() {
+		let _ = sut.view
+
+		XCTAssertEqual(.roundedRect, sut.todoNameTextField.borderStyle)
+	}
+
 	// MARK: Save Button
 	func testSaveButtonHasTargetAndAction() {
 		let _ = sut.view
@@ -55,6 +91,17 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		XCTAssertFalse(saveButton.isEnabled)
 	}
 
+	func testWhenTodoNameTextFieldHasMoreThanZeroCharacters_SaveButtonIsEnabled() {
+		let _ = sut.view
+		let saveButton: UIBarButtonItem = sut.navigationItem.rightBarButtonItem!
+
+		// Set Text and Simulate Change Event
+		sut.todoNameTextField.text = "A"
+		sut.textFieldDidChange(sender: sut.todoNameTextField)
+
+		XCTAssertTrue(saveButton.isEnabled)
+	}
+
 	func testWhenTodoNameTextFieldIsPopulatedAndSaveButtonTapped_callsCorrectMethodOnDelegateWithTodoArgument() {
 		let _ = sut.view
 		sut.todoNameTextField.text = "Todo Test Name"
@@ -63,6 +110,7 @@ class AddNewTodoViewControllerTest: XCTestCase {
 
 		XCTAssertFalse(mockDelegate.delegateDidCreateTodoWasCalled)
 		sut.saveButtonTapped()
+
 		XCTAssertTrue(mockDelegate.delegateDidCreateTodoWasCalled)
 		XCTAssertNotNil(mockDelegate.createdTodo)
 	}
@@ -85,29 +133,6 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		XCTAssertFalse(mockDelegate.delegateCanceledWasCalled)
 		sut.cancelButtonTapped()
 		XCTAssertTrue(mockDelegate.delegateCanceledWasCalled)
-	}
-
-
-	// MARK: Subviews
-	func testBackgroundColorIsWhite() {
-		let _ = sut.view
-		XCTAssertEqual(sut.view.backgroundColor, .white)
-	}
-
-	func testHasCorrectSubviews() {
-		let _ = sut.view
-
-		XCTAssertNotNil(sut.todoNameLabel)
-		XCTAssertNotNil(sut.todoNameTextField)
-
-		XCTAssertEqual(sut.view, sut.todoNameLabel.superview)
-		XCTAssertEqual(sut.view, sut.todoNameTextField.superview)
-	}
-
-	func testTodoNameTextField_hasADelegate() {
-		let _ = sut.view
-
-		XCTAssertNotNil(sut.todoNameTextField.delegate)
 	}
 
 	// MARK: Mock Objects

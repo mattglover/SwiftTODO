@@ -84,8 +84,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController: AddNewTodoViewControllerDelegate {
-	internal func addNewTodoViewController(viewController: AddNewTodoViewControllerProtocol, didCreateTodo: Todo) {
-		print("addNewTodoViewController:didCreateTodo:")
+	internal func addNewTodoViewController(viewController: AddNewTodoViewControllerProtocol, didCreateTodo todo: Todo) {
+		self.todoRepository .addTodo(todo: todo)
+		self.dismiss(animated: true, completion: nil)
 	}
 
 	internal func addNewTodoViewControllerDidCancel(viewController: AddNewTodoViewControllerProtocol) {
