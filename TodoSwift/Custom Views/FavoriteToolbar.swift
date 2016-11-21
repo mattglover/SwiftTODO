@@ -24,8 +24,8 @@ extension FavoriteToolbar {
 		translatesAutoresizingMaskIntoConstraints = false
 		addSubview(segmentedControl)
 
-		segmentedControl.insertSegment(withTitle: "All", at: 0, animated: false)
-		segmentedControl.insertSegment(withTitle: "Favorite", at: 1, animated: false)
+		segmentedControl.insertSegment(withTitle: NSLocalizedString("All", comment: ""), at: 0, animated: false)
+		segmentedControl.insertSegment(withTitle: NSLocalizedString("Favorite", comment: ""), at: 1, animated: false)
 	}
 }
 

@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
 	func setupSubviews() {
 
-		self.title = "Todos"
+		self.title = NSLocalizedString("Todos", comment: "")
 
 		let toolbar = UIToolbar.init(frame: .zero)
 		toolbar.translatesAutoresizingMaskIntoConstraints = false

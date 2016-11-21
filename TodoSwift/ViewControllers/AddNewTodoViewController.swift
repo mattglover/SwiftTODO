@@ -30,7 +30,7 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 	func setupSubviews() {
 
 		self.view.backgroundColor = .white
-		self.title = "Add Todo"
+		self.title = NSLocalizedString("Add Todo", comment: "")
 
 		todoNameLabel.translatesAutoresizingMaskIntoConstraints = false
 		self.view.addSubview(todoNameLabel)
