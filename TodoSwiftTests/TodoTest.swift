@@ -20,7 +20,7 @@ class TodoTest: XCTestCase {
 		XCTAssertNotNil(sut)
 		XCTAssertNotNil(sut.guid)
 		XCTAssertNil(sut.name)
-		XCTAssertEqual(sut.favorited!, false)
+		XCTAssertEqual(sut.isFavorited!, false)
 		XCTAssertEqual(sut.state!, .notDone)
 		XCTAssertTrue(sut.debugDescription.contains("> NAME:NO-NAME FAVOURITE:false STATE:notDone"))
 	}
@@ -31,7 +31,7 @@ class TodoTest: XCTestCase {
 		XCTAssertNotNil(sut)
 		XCTAssertNotNil(sut.guid)
 		XCTAssertEqual(sut.name!, "Todo Item 1")
-		XCTAssertEqual(sut.favorited!, true)
+		XCTAssertEqual(sut.isFavorited!, true)
 		XCTAssertEqual(sut.state!, .notDone)
 		XCTAssertTrue(sut.debugDescription.contains("> NAME:Todo Item 1 FAVOURITE:true STATE:notDone"))
 	}
@@ -42,7 +42,7 @@ class TodoTest: XCTestCase {
 		XCTAssertNotNil(sut)
 		XCTAssertEqual(sut.guid!, "ABCDE-FGHIJKLMNO-PQRST-UVWXY-Z")
 		XCTAssertEqual(sut.name!, "Todo Item 1")
-		XCTAssertEqual(sut.favorited!, true)
+		XCTAssertEqual(sut.isFavorited!, true)
 		XCTAssertEqual(sut.state!, .notDone)
 		XCTAssertEqual(sut.debugDescription, "[TODO]<ABCDE-FGHIJKLMNO-PQRST-UVWXY-Z> NAME:Todo Item 1 FAVOURITE:true STATE:notDone")
 	}

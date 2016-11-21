@@ -30,6 +30,8 @@ class ViewController: UIViewController {
 
 	func setupSubviews() {
 
+		self.title = "Todos"
+
 		let toolbar = UIToolbar.init(frame: .zero)
 		toolbar.translatesAutoresizingMaskIntoConstraints = false
 		self.view.addSubview(toolbar)
@@ -45,7 +47,7 @@ class ViewController: UIViewController {
 		let metrics = ["toolbarHeight" : 44.0]
 		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[toolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
 		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|[tableview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|[toolbar(toolbarHeight)][tableview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|[tableview][toolbar(toolbarHeight)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
 	}
 
 	override func viewDidLoad() {

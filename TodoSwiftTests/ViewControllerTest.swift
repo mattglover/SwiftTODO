@@ -26,6 +26,11 @@ class ViewControllerTest: XCTestCase {
 		XCTAssertEqual(UIRectEdge(rawValue: 0), sut.edgesForExtendedLayout)
 	}
 
+	func testViewControllerTitle_isCorrect() {
+		let _ = sut.view
+		XCTAssertEqual(sut.title, "Todos")
+	}
+
 	// MARK: Subviews
 	func testWhenCreated_TableViewHasBeenAddedAsSubview() {
 		var hasTableView = false

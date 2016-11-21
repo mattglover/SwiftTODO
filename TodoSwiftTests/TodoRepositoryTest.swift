@@ -79,7 +79,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 		// When
 		if let fetchedTodo = sut.fetchTodo(guid: guid) {
 			fetchedTodo.name = "Bob Todo"
-			fetchedTodo.favorited = true
+			fetchedTodo.isFavorited = true
 			fetchedTodo.state = .done
 			sut.update(todo:fetchedTodo)
 		}
@@ -87,7 +87,7 @@ class TodoRepositoryServiceTest: XCTestCase {
 		// Then
 		if let updatedTodoReFetched = sut.fetchTodo(guid: guid) {
 			XCTAssertEqual("Bob Todo", updatedTodoReFetched.name!)
-			XCTAssertEqual(true, updatedTodoReFetched.favorited)
+			XCTAssertEqual(true, updatedTodoReFetched.isFavorited)
 			XCTAssertEqual(.done, updatedTodoReFetched.state)
 		}
 	}

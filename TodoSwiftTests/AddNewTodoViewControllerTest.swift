@@ -29,6 +29,11 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		XCTAssertNotNil(sut.delegate)
 	}
 
+	func testViewControllerTitle_isCorrect() {
+		let _ = sut.view
+		XCTAssertEqual(sut.title, "Add Todo")
+	}
+
 	// MARK: Save Button
 	func testSaveButtonHasTargetAndAction() {
 		let _ = sut.view
