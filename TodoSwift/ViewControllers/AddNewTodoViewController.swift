@@ -9,7 +9,11 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 	var delegate: AddNewTodoViewControllerDelegate?
 
 	let todoNameLabel 	  = UILabel()
+	let favoriteLabel 	  = UILabel()
+	let completeLabel 	  = UILabel()
 	let todoNameTextField = UITextField()
+	let favoriteSwitch 	  = UISwitch()
+	let completeSwitch 	  = UISwitch()
 
 	required init(delegate: AddNewTodoViewControllerDelegate?) {
 		self.delegate = delegate
@@ -39,6 +43,20 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 		todoNameLabel.text = NSLocalizedString("Todo Name:", comment: "")
 		self.view.addSubview(todoNameLabel)
 
+		favoriteLabel.translatesAutoresizingMaskIntoConstraints = false
+		favoriteLabel.text = NSLocalizedString("Favorite:", comment: "")
+		self.view.addSubview(favoriteLabel)
+
+		completeLabel.translatesAutoresizingMaskIntoConstraints = false
+		completeLabel.text = NSLocalizedString("Complete:", comment: "")
+		self.view.addSubview(completeLabel)
+
+		favoriteSwitch.translatesAutoresizingMaskIntoConstraints = false
+		self.view.addSubview(favoriteSwitch)
+
+		completeSwitch.translatesAutoresizingMaskIntoConstraints = false
+		self.view.addSubview(completeSwitch)
+
 		todoNameTextField.translatesAutoresizingMaskIntoConstraints = false
 		todoNameTextField.delegate = self
 		todoNameTextField.addTarget(self, action: #selector(AddNewTodoViewController.textFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
@@ -47,11 +65,23 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 	}
 
 	func setupConstraints() {
-		let views   = ["todoNameLabel" : todoNameLabel, "todoNameTextField" : todoNameTextField]
+		let views   = ["todoNameLabel" : todoNameLabel,
+		               "todoNameTextField" : todoNameTextField,
+					   "favoriteLabel" : favoriteLabel,
+					   "completeLabel" : completeLabel,
+					   "favoriteSwitch": favoriteSwitch,
+					   "completeSwitch": completeSwitch]
+
+
 		let metrics:[String:Any] = [:]
 		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|-[todoNameLabel]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
 		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|-(16)-[todoNameTextField]-(16)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|-(64)-[todoNameLabel]-(16)-[todoNameTextField]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|-[favoriteLabel]-(<=8)-[favoriteSwitch]-(16)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "H:|-[completeLabel]-(<=8)-[completeSwitch]-(16)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+		NSLayoutConstraint.activate(NSLayoutConstraint .constraints(withVisualFormat: "V:|-(64)-[todoNameLabel]-(8)-[todoNameTextField]-(32)-[favoriteLabel]-(32)-[completeLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+
+		NSLayoutConstraint.activate([NSLayoutConstraint (item: favoriteSwitch, attribute: .centerY, relatedBy: .equal, toItem: favoriteLabel, attribute: .centerY, multiplier: 1.0, constant: 0.0)])
+		NSLayoutConstraint.activate([NSLayoutConstraint (item: completeSwitch, attribute: .centerY, relatedBy: .equal, toItem: completeLabel, attribute: .centerY, multiplier: 1.0, constant: 0.0)])
 	}
 
 	override func viewDidLoad() {
@@ -73,7 +103,8 @@ class AddNewTodoViewController: UIViewController, AddNewTodoViewControllerProtoc
 			return
 		}
 
-		let todo = Todo(name: todoName, favorited: false, state: .notDone)
+		let todoDoneState: TodoState = completeSwitch.isOn ? .done : .notDone
+		let todo = Todo(name: todoName, favorited: favoriteSwitch.isOn, state: todoDoneState)
 		delegate?.addNewTodoViewController(viewController: self, didCreateTodo: todo)
 	}
 

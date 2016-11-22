@@ -44,20 +44,40 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		let _ = sut.view
 
 		XCTAssertNotNil(sut.todoNameLabel)
+		XCTAssertNotNil(sut.favoriteLabel)
+		XCTAssertNotNil(sut.completeLabel)
+		XCTAssertNotNil(sut.favoriteSwitch)
+		XCTAssertNotNil(sut.completeSwitch)
 		XCTAssertNotNil(sut.todoNameTextField)
 
 		XCTAssertEqual(sut.view, sut.todoNameLabel.superview)
+		XCTAssertEqual(sut.view, sut.favoriteLabel.superview)
+		XCTAssertEqual(sut.view, sut.completeLabel.superview)
+		XCTAssertEqual(sut.view, sut.favoriteSwitch.superview)
+		XCTAssertEqual(sut.view, sut.completeSwitch.superview)
 		XCTAssertEqual(sut.view, sut.todoNameTextField.superview)
 	}
 
-	// MARK: TodoName Label
+	// MARK: Labels
 	func testTodoLabel_IsCorrect() {
 		let _ = sut.view
 
 		XCTAssertEqual("Todo Name:", sut.todoNameLabel.text)
 	}
 
-	// MARK: TodoNameTextField
+	func testFavoriteLabel_IsCorrect() {
+		let _ = sut.view
+
+		XCTAssertEqual("Favorite:", sut.favoriteLabel.text)
+	}
+
+	func testCompleteLabel_IsCorrect() {
+		let _ = sut.view
+
+		XCTAssertEqual("Complete:", sut.completeLabel.text)
+	}
+
+	// MARK: TextField
 	func testTodoNameTextField_hasADelegate() {
 		let _ = sut.view
 
@@ -68,6 +88,14 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		let _ = sut.view
 
 		XCTAssertEqual(.roundedRect, sut.todoNameTextField.borderStyle)
+	}
+
+	// MARK: UISwitch
+	func testSwitch_areAllOff() {
+		let _ = sut.view
+
+		XCTAssertFalse(sut.favoriteSwitch.isOn)
+		XCTAssertFalse(sut.completeSwitch.isOn)
 	}
 
 	// MARK: Save Button
@@ -102,9 +130,11 @@ class AddNewTodoViewControllerTest: XCTestCase {
 		XCTAssertTrue(saveButton.isEnabled)
 	}
 
-	func testWhenTodoNameTextFieldIsPopulatedAndSaveButtonTapped_callsCorrectMethodOnDelegateWithTodoArgument() {
+	func testWhenFormIsPopulatedWithTodoNameAndFalseForAllSwitchesAndSaveButtonTapped_callsCorrectMethodOnDelegateWithTodoArgument() {
 		let _ = sut.view
-		sut.todoNameTextField.text = "Todo Test Name"
+		sut.todoNameTextField.text = "Incomplete and non-favorite Todo"
+		sut.favoriteSwitch.isOn = false
+		sut.completeSwitch.isOn = false
 		let saveButton: UIBarButtonItem = sut.navigationItem.rightBarButtonItem!
 		XCTAssertEqual(#selector(AddNewTodoViewController.saveButtonTapped), saveButton.action!)
 
@@ -113,6 +143,27 @@ class AddNewTodoViewControllerTest: XCTestCase {
 
 		XCTAssertTrue(mockDelegate.delegateDidCreateTodoWasCalled)
 		XCTAssertNotNil(mockDelegate.createdTodo)
+		XCTAssertEqual("Incomplete and non-favorite Todo", mockDelegate.createdTodo?.name)
+		XCTAssertFalse((mockDelegate.createdTodo?.isFavorited)!)
+		XCTAssertEqual(.notDone, mockDelegate.createdTodo?.state)
+	}
+
+	func testWhenFormIsPopulatedWithTodoNameAndTrueForAllSwitchesAndSaveButtonTapped_callsCorrectMethodOnDelegateWithTodoArgument() {
+		let _ = sut.view
+		sut.todoNameTextField.text = "Completed and favorited Todo"
+		sut.favoriteSwitch.isOn = true
+		sut.completeSwitch.isOn = true
+		let saveButton: UIBarButtonItem = sut.navigationItem.rightBarButtonItem!
+		XCTAssertEqual(#selector(AddNewTodoViewController.saveButtonTapped), saveButton.action!)
+
+		XCTAssertFalse(mockDelegate.delegateDidCreateTodoWasCalled)
+		sut.saveButtonTapped()
+
+		XCTAssertTrue(mockDelegate.delegateDidCreateTodoWasCalled)
+		XCTAssertNotNil(mockDelegate.createdTodo)
+		XCTAssertEqual("Completed and favorited Todo", mockDelegate.createdTodo?.name)
+		XCTAssertTrue((mockDelegate.createdTodo?.isFavorited)!)
+		XCTAssertEqual(.done, mockDelegate.createdTodo?.state)
 	}
 
 	// MARK: Cancel Button
